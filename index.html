@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مدرسة الشواولة الثانوية بنين</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #10b981;
+            --accent-color: #f59e0b;
+            --dark-color: #1e293b;
+            --light-bg: #f8fafc;
+            --white: #ffffff;
+            --text-color: #334155;
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --shadow-hover: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);
+            color: var(--text-color);
+            line-height: 1.8;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1e40af 100%);
+            color: var(--white);
+            padding: 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-top {
+            background: rgba(0,0,0,0.2);
+            padding: 0.8rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .school-info {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .school-title h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 0.2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .school-title p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        nav {
+            padding: 0 2rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 0;
+            justify-content: center;
+        }
+
+        nav ul li {
+            flex: 1;
+        }
+
+        nav ul li a {
+            display: block;
+            color: var(--white);
+            text-decoration: none;
+            padding: 1.2rem 2rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+            text-align: center;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            background: rgba(255,255,255,0.15);
+            border-bottom-color: var(--accent-color);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Home Page */
+        .hero {
+            background: linear-gradient(135deg, var(--white) 0%, #e0f2fe 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(37,99,235,0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-weight: 800;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-icon {
+            font-size: 1.8rem;
+        }
+
+        .news-item {
+            padding: 1rem;
+            border-right: 3px solid var(--secondary-color);
+            background: var(--light-bg);
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .news-item:hover {
+            background: #fff;
+            border-right-color: var(--accent-color);
+        }
+
+        .news-date {
+            color: var(--accent-color);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .schedule-table th,
+        .schedule-table td {
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .schedule-table th {
+            background: var(--primary-color);
+            color: var(--white);
+            font-weight: 700;
+        }
+
+        .schedule-table tr:hover {
+            background: var(--light-bg);
+        }
+
+        /* Departments Page */
+        .department-card {
+            background: linear-gradient(135deg, var(--white) 0%, #f0f9ff 100%);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            border-right: 5px solid var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .department-card:hover {
+            transform: translateX(-10px);
+            border-right-color: var(--accent-color);
+        }
+
+        .department-card h3 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .subjects-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .subject-tag {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 0.5rem 1.2rem;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .subject-tag:hover {
+            background: var(--accent-color);
+            transform: scale(1.05);
+        }
+
+        /* Staff Page */
+        .staff-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .staff-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .staff-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .staff-photo {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--white);
+            font-weight: 800;
+        }
+
+        .staff-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .staff-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--dark-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .staff-role {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .staff-subject {
+            color: var(--text-color);
+            font-size: 0.95rem;
+        }
+
+        /* Students Page */
+        .students-intro {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #059669 100%);
+            color: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .edit-note {
+            background: #fef3c7;
+            border-right: 4px solid var(--accent-color);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .edit-note h3 {
+            color: #92400e;
+            margin-bottom: 0.5rem;
+        }
+
+        .edit-note p {
+            color: #78350f;
+        }
+
+        .students-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .student-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border-top: 3px solid var(--secondary-color);
+        }
+
+        .student-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .student-id {
+            color: var(--accent-color);
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .student-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--dark-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .student-class {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        /* Page Titles */
+        .page-title {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1e40af 100%);
+            color: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .page-title h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            opacity: 0.9;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav ul li a {
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+
+            .school-title h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-top">
+            <div class="school-info">
+                <div class="logo">ش</div>
+                <div class="school-title">
+                    <h1>مدرسة الشواولة الثانوية بنين</h1>
+                    <p>نحو مستقبل مشرق بالعلم والمعرفة</p>
+                </div>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" class="nav-link active" data-page="home">🏠 الرئيسية</a></li>
+                <li><a href="#" class="nav-link" data-page="departments">📚 المراحل الدراسية</a></li>
+                <li><a href="#" class="nav-link" data-page="staff">👨‍🏫 المعلمون والإدارة</a></li>
+                <li><a href="#" class="nav-link" data-page="students">👨‍🎓 الطلاب</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <!-- Home Page -->
+        <div id="home" class="page active">
+            <div class="hero">
+                <h2>مرحباً بكم في مدرسة الشواولة الثانوية بنين</h2>
+                <p>نسعى لتقديم تعليم متميز يبني جيلاً واعياً ومتمكناً من العلم والمعرفة، في بيئة تربوية محفزة ومبدعة</p>
+            </div>
+
+            <div class="cards-grid">
+                <!-- News Card -->
+                <div class="card">
+                    <h3><span class="card-icon">📰</span> آخر الأخبار</h3>
+                    <div id="news-container"></div>
+                </div>
+
+                <!-- Schedule Card -->
+                <div class="card">
+                    <h3><span class="card-icon">⏰</span> جدول اليوم الدراسي</h3>
+                    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:10px;">
+                        <select id="daySelect"></select>
+                        <select id="classSelect"></select>
+                        </div>
+                        
+                        
+                        <table class="schedule-table">
+                        <thead>
+                        <tr>
+                        <th>المادة</th>
+                        <th>الحصة</th>
+                        </tr>
+                        </thead>
+                        <tbody id="schedule-container"></tbody>
+                        </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Departments Page -->
+        <div id="departments" class="page">
+            <div class="page-title">
+                <h2>المراحل والأقسام الدراسية</h2>
+                <p>نقدم تعليماً متميزاً في جميع المراحل الثانوية</p>
+            </div>
+            <div id="departments-container"></div>
+        </div>
+
+        <!-- Staff Page -->
+        <div id="staff" class="page">
+            <div class="page-title">
+                <h2>المعلمون والإدارة المدرسية</h2>
+                <p>نخبة من المعلمين والإداريين المتميزين</p>
+            </div>
+            <div class="staff-grid" id="staff-container"></div>
+        </div>
+
+        <!-- Students Page -->
+        <div id="students" class="page">
+            <div class="page-title">
+                <h2>طلاب المدرسة</h2>
+                <p>أبناؤنا الطلاب هم ثروتنا الحقيقية</p>
+            </div>
+
+            <div class="edit-note">
+                <h3>📝 ملاحظة للمحرر</h3>
+                <p>يمكنك تعديل بيانات الطلاب من خلال تعديل قسم <strong>studentsData</strong> في كود JavaScript أدناه. فقط قم بإضافة أو تعديل المعلومات حسب الحاجة.</p>
+            </div>
+
+            <div class="students-intro">
+                <h2>قائمة طلاب المدرسة</h2>
+                <p>جميع طلابنا الأعزاء مسجلين ومتابعين بعناية فائقة</p>
+            </div>
+
+            <div class="students-grid" id="students-container"></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 مدرسة الشواولة الثانوية بنين - جميع الحقوق محفوظة</p>
+        <p>صنع بكل ❤️ من أجل التعليم والمستقبل</p>
+    </footer>
+
+    <script>
+        // ========================================
+        // بيانات الموقع - يمكنك تعديلها بسهولة
+        // ========================================
+
+        // الأخبار
+        const newsData = [
+            { date: '10 فبراير 2025', text: 'بدء امتحانات الفصل الدراسي الثاني يوم 20 فبراير' },
+            { date: '8 فبراير 2025', text: 'إجازة عيد الفطر المبارك من 29 مارس إلى 5 أبريل' },
+            { date: '5 فبراير 2025', text: 'ندوة توعوية عن أهمية القراءة يوم الخميس القادم' },
+            { date: '1 فبراير 2025', text: 'تكريم الطلاب المتفوقين في الفصل الدراسي الأول' }
+        ];
+
+        // جدول اليوم الدراسي
+        const classes = {
+            "1-1": "1/1",
+            "1-2": "1/2",
+            "1-3": "1/3",
+            "2-1": "2/1",
+            "2-2": "2/2",
+            "2-3": "2/3",
+            "2-4": "2/4",
+            "2-5": "2/5",
+        };
+
+
+        const scheduleData = {
+            "sun": {
+                "1-1": [
+                    {period:"عربي", time:"الأولى"},
+                    {period:"رياضيات", time:"الثانية"},
+                    {period:"علوم متكاملة", time:"الثالثة"},
+                    {period:"أنجليزية", time:"الرابعة"},
+                    {period:"فرنسى", time:"الخامسة"},
+                    {period:"تربية دينية", time:"السادسة"}
+                ],
+                "2-1": [
+                    {period:"فيزياء", time:"7:30"}
+                ]
+            },
+
+
+            "mon": {
+                "1-1": [
+                    {period:"علوم", time:"7:30"}
+                ]
+            },
+
+
+            "tue": {},
+            "wed": {},
+            "thu": {}
+        };
+
+        const days = {
+            sun: "الأحد",
+            mon: "الاثنين",
+            tue: "الثلاثاء",
+            wed: "الأربعاء",
+            thu: "الخميس"
+        };
+
+        // المراحل الدراسية
+        const departmentsData = [
+            { name:"1/1", link:"classes/class1.html" },
+            { name:"1/2", link:"classes/class2.html" },
+            { name:"1/3", link:"classes/class3.html" },
+            { name:"2/1", link:"classes/class4.html" },
+            { name:"2/2", link:"classes/class5.html" },
+            { name:"2/3", link:"classes/class6.html" },
+            { name:"2/4", link:"classes/class7.html" },
+            { name:"2/5", link:"classes/class8.html" }
+        ];
+
+        // المعلمون والإدارة
+        const staffData = [
+            { name: 'أ. محمد أحمد السيد', role: 'مدير المدرسة', subject: 'الإدارة المدرسية', initial: 'م' },
+            { name: 'أ. أحمد حسن محمود', role: 'وكيل المدرسة', subject: 'اللغة العربية', initial: 'أ' },
+            { name: 'أ. خالد عبدالله يوسف', role: 'معلم أول', subject: 'الرياضيات', initial: 'خ' },
+            { name: 'أ. عمر محمود فتحي', role: 'معلم', subject: 'الفيزياء', initial: 'ع' },
+            { name: 'أ. ياسر علي حسن', role: 'معلم', subject: 'الكيمياء', initial: 'ي' },
+            { name: 'أ. طارق سعيد إبراهيم', role: 'معلم', subject: 'الأحياء', initial: 'ط' },
+            { name: 'أ. وليد صلاح الدين', role: 'معلم', subject: 'اللغة الإنجليزية', initial: 'و' },
+            { name: 'أ. سامي جمال عبدالناصر', role: 'معلم', subject: 'التاريخ', initial: 'س' },
+            { name: 'أ. كريم فاروق رمضان', role: 'معلم', subject: 'الجغرافيا', initial: 'ك' },
+            { name: 'أ. نبيل عادل مصطفى', role: 'معلم', subject: 'التربية الإسلامية', initial: 'ن' },
+            { name: 'أ. هشام رجب محمد', role: 'معلم', subject: 'الحاسب الآلي', initial: 'هـ' },
+            { name: 'أ. مصطفى كامل عثمان', role: 'مشرف تربوي', subject: 'الإشراف التربوي', initial: 'م' }
+        ];
+
+        // ========================================
+        // بيانات الطلاب - عدّل هنا لإضافة طلاب حقيقيين
+        // ========================================
+        const studentsData = [
+            { id: '2025001', name: 'أحمد محمد علي', class: 'الصف الأول الثانوي - 1' },
+            { id: '2025002', name: 'محمود حسن إبراهيم', class: 'الصف الأول الثانوي - 1' },
+            { id: '2025003', name: 'عمر خالد يوسف', class: 'الصف الأول الثانوي - 2' },
+            { id: '2025004', name: 'يوسف سعيد أحمد', class: 'الصف الأول الثانوي - 2' },
+            { id: '2025005', name: 'كريم طارق محمود', class: 'الصف الثاني الثانوي - علمي 1' },
+            { id: '2025006', name: 'عبدالله وليد صلاح', class: 'الصف الثاني الثانوي - علمي 1' },
+            { id: '2025007', name: 'إبراهيم ياسر عبدالله', class: 'الصف الثاني الثانوي - علمي 2' },
+            { id: '2025008', name: 'حسام سامي فتحي', class: 'الصف الثاني الثانوي - أدبي 1' },
+            { id: '2025009', name: 'مصطفى عادل رمضان', class: 'الصف الثالث الثانوي - علمي علوم' },
+            { id: '2025010', name: 'محمد نبيل جمال', class: 'الصف الثالث الثانوي - علمي رياضة' },
+            { id: '2025011', name: 'هشام كمال حسين', class: 'الصف الثالث الثانوي - علمي علوم' },
+            { id: '2025012', name: 'علي رجب عثمان', class: 'الصف الثالث الثانوي - أدبي' }
+        ];
+
+        // ========================================
+        // كود التشغيل - لا تعدّل هذا القسم
+        // ========================================
+
+        // عرض الأخبار
+        function displayNews() {
+            const container = document.getElementById('news-container');
+            container.innerHTML = newsData.map((news, index) => `
+                <a href=\"news/Num${index+1}.html\" class=\"news-item\" style=\"display:block; text-decoration:none; color:inherit;\">
+                    <div class=\"news-date\">${news.date}</div>
+                    <div>${news.text}</div>
+                </a>
+            `).join('');
+        }
+
+
+        // عرض المراحل الدراسية
+        function displayDepartments() {
+            const container = document.getElementById('departments-container');
+            container.innerHTML = departmentsData.map(c => `
+                <a href="${c.link}" class="department-card" style="display:block; text-decoration:none; color:inherit;">
+                    <h3>${c.name}</h3>
+                    <p>اضغط لعرض معلومات الفصل</p>
+                </a>
+            `).join('');
+        }
+
+        // عرض المعلمين
+        function displayStaff() {
+            const container = document.getElementById('staff-container');
+            container.innerHTML = staffData.map(staff => `
+                <div class="staff-card">
+                    <div class="staff-photo">${staff.initial}</div>
+                    <div class="staff-info">
+                        <div class="staff-name">${staff.name}</div>
+                        <div class="staff-role">${staff.role}</div>
+                        <div class="staff-subject">${staff.subject}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // عرض الطلاب
+        function displayStudents() {
+            const container = document.getElementById('students-container');
+            let html = "";
+
+            const groups = {};
+            studentsData.forEach(s => {
+            if(!groups[s.class]) groups[s.class] = [];
+                groups[s.class].push(s);
+            });
+
+
+            for(let cls in groups){
+                html += `<h3>${cls}</h3>`;
+                groups[cls].forEach(st => {
+                    html += `<div class="student-card">
+                    <a href="students/${st.id}.html">${st.name}</a>
+                    </div>`;
+                });
+            }
+
+
+container.innerHTML = html;
+}
+
+        function loadClasses(){
+            const select = document.getElementById("classSelect");
+            for(let id in classes){
+                select.innerHTML += `<option value="${id}">${classes[id]}</option>`;
+            }
+            select.onchange = displaySchedule;
+        }
+
+
+        function loadDays(){
+            const d = document.getElementById("daySelect");
+            for(let id in days){
+                d.innerHTML += `<option value="${id}">${days[id]}</option>`;
+            }
+            d.onchange = displaySchedule;
+        }
+
+
+        function loadClasses(){
+            const select = document.getElementById("classSelect");
+            for(let id in classes){
+                select.innerHTML += `<option value="${id}">${classes[id]}</option>`;
+            }
+            select.onchange = displaySchedule;
+        }
+
+
+        function displaySchedule(){
+            const day = document.getElementById("daySelect").value;
+            const cls = document.getElementById("classSelect").value;
+
+
+            const data = (scheduleData[day] && scheduleData[day][cls]) || [];
+            const container = document.getElementById("schedule-container");
+
+
+            container.innerHTML = data.map(s=>`
+                <tr>
+                <td>${s.period}</td>
+                <td>${s.time}</td>
+                </tr>
+            `).join('');
+        }
+
+        // التنقل بين الصفحات
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // إزالة active من جميع الروابط والصفحات
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                
+                // إضافة active للرابط والصفحة المختارة
+                link.classList.add('active');
+                const pageId = link.getAttribute('data-page');
+                document.getElementById(pageId).classList.add('active');
+                
+                // التمرير لأعلى
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+
+        // تحميل البيانات عند فتح الصفحة
+        window.addEventListener('DOMContentLoaded', () => {
+            displayNews();
+            displaySchedule();
+            displayDepartments();
+            displayStaff();
+            displayStudents();
+            loadDays();
+            loadClasses();
+        });
+    </script>
+</body>
+</html>
