@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-
-Sitemap: https://www.a3sfb.work.gd/sitemap.xml
+Sitemap: https://Code0120.github.io/Al-ShawlaSecondarySchoolForBoys/sitemap.xml
